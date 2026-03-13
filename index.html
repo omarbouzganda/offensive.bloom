@@ -4,6 +4,27 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Offensive Bloom — Cybersecurity</title>
+<!-- PWA — Android + iPhone + Desktop -->
+<link rel="manifest" href="/manifest.json"/>
+<meta name="theme-color" content="#000305"/>
+<!-- Android -->
+<meta name="mobile-web-app-capable" content="yes"/>
+<!-- iPhone / iPad -->
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Offensive Bloom"/>
+<link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152.png"/>
+<link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png"/>
+<!-- iOS splash screens -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<!-- Windows / Edge -->
+<meta name="msapplication-TileImage" content="/icons/icon-144.png"/>
+<meta name="msapplication-TileColor" content="#000305"/>
+<meta name="msapplication-config" content="none"/>
+<!-- Desktop (Chrome/Edge install) -->
+<link rel="icon" type="image/png" sizes="256x256" href="/icons/icon-256.png"/>
+<link rel="icon" type="image/png" sizes="128x128" href="/icons/icon-128.png"/>
+<link rel="icon" type="image/png" sizes="96x96"   href="/icons/icon-96.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Exo+2:ital,wght@0,100;0,200;0,300;1,200&display=swap" rel="stylesheet"/>
 <style>
@@ -151,6 +172,7 @@ nav::after{
   display:flex;align-items:center;
   padding:80px 5% 60px;
   overflow:hidden;
+  width:100%;
 }
 /* DIAGONAL SLICE */
 #hero::before{
@@ -171,8 +193,8 @@ nav::after{
 @keyframes glow-breathe{0%,100%{transform:translate(-50%,-50%) scale(1);}50%{transform:translate(-50%,-50%) scale(1.08);}}
 
 .hero-wrap{
-  max-width:1360px;margin:0 auto;width:100%;
-  display:grid;grid-template-columns:1fr 400px;gap:80px;align-items:center;
+  max-width:1200px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:center;
   position:relative;z-index:2;
 }
 
@@ -189,7 +211,7 @@ nav::after{
 /* GLITCH TITLE */
 .hero-title{
   font-family:var(--ff-head);
-  font-size:clamp(4rem,9.5vw,9rem);
+  font-size:clamp(3rem,7.5vw,7.5rem);
   font-weight:900;
   line-height:.88;
   letter-spacing:.04em;
@@ -231,9 +253,9 @@ nav::after{
 .hero-desc strong{color:rgba(232,244,255,.55);font-weight:500;}
 
 /* HERO STATS */
-.hero-stats{display:flex;gap:0;margin-bottom:48px;}
+.hero-stats{display:flex;gap:0;margin-bottom:48px;flex-wrap:wrap;}
 .hstat{
-  padding:0 32px;
+  padding:0 24px;
   border-right:1px solid var(--rim);
 }
 .hstat:first-child{padding-left:0;}
@@ -290,11 +312,13 @@ nav::after{
   background:var(--panel);
   border:1px solid var(--rim);
   border-radius:4px;
-  padding:32px 28px;
+  padding:26px 22px;
   overflow:hidden;
   transition:transform .6s cubic-bezier(.2,.8,.2,1),box-shadow .6s;
   transform-style:preserve-3d;
   box-shadow:0 0 0 1px var(--rim),0 40px 80px rgba(0,0,0,.8),0 20px 40px rgba(0,0,0,.5);
+  min-width:0;
+  width:100%;
 }
 .hero-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
@@ -335,11 +359,11 @@ nav::after{
 
 .hc-div{height:1px;background:linear-gradient(90deg,transparent,var(--rim),transparent);margin:16px 0;}
 
-.hc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px;position:relative;z-index:1;}
+.hc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px;position:relative;z-index:1;overflow:hidden;}
 .tag{
-  padding:4px 10px;border-radius:2px;
-  font-family:var(--ff-mono);font-size:.58rem;letter-spacing:.06em;
-  transition:all .2s;
+  padding:3px 8px;border-radius:2px;
+  font-family:var(--ff-mono);font-size:.54rem;letter-spacing:.06em;
+  transition:all .2s;white-space:nowrap;
 }
 .tag-c{background:var(--cyan-dim);border:1px solid rgba(0,212,255,.2);color:var(--cyan2);}
 .tag-r{background:var(--red-dim);border:1px solid rgba(255,45,85,.15);color:var(--red);}
@@ -696,31 +720,190 @@ footer{
 /* ══════════════════════════════
    RESPONSIVE
 ══════════════════════════════ */
-@media(max-width:1024px){
-  .hero-wrap{grid-template-columns:1fr;padding-top:100px;}
+/* ── TABLET ── */
+@media(max-width:1200px){
+  .hero-title{font-size:clamp(3.5rem,8vw,7rem);}
+  .hero-wrap{gap:40px;}
+  .trust-inner{gap:0;flex-wrap:wrap;}
+  .ts{padding:20px 28px;}
+  .hstat{padding:0 20px;}
+}
+@media(max-width:1100px){
+  .hero-wrap{grid-template-columns:1fr;padding-top:100px;gap:0;}
   .hero-card{display:none;}
   .svc-grid{grid-template-columns:1fr 1fr;}
   .svc-cta{grid-column:span 2;}
   .ct-grid{grid-template-columns:1fr;}
   .sk-grid{grid-template-columns:1fr;}
+  .hero-title{font-size:clamp(3rem,10vw,6.5rem);}
+  .hero-desc{max-width:100%;}
+  .ch-grid{grid-template-columns:1fr;}
 }
+/* ── MOBILE ── */
 @media(max-width:700px){
   .nav-links,.nav-cta{display:none;}
   .nav-mob{display:block;}
-  .svc-grid{grid-template-columns:1fr;}
-  .svc-cta{grid-column:span 1;flex-direction:column;}
-  .ch-grid{grid-template-columns:1fr;}
-  .proc-row{grid-template-columns:1fr 1fr;}
-  .proc-row::before{display:none;}
-  .trust-inner{gap:24px;}
+  /* HERO */
+  #hero{padding:80px 5% 50px;}
+  .hero-title{font-size:clamp(3rem,13vw,5rem);}
+  .hero-line{font-size:1.05rem;}
+  .hero-desc{font-size:.92rem;}
+  .hero-stats{flex-wrap:wrap;gap:0;border:1px solid var(--rim);}
+  .hstat{padding:14px 16px;border-right:1px solid var(--rim);border-bottom:1px solid var(--rim);}
+  .hstat-n{font-size:1.8rem;}
+  .hero-btns{flex-direction:column;}
+  .btn-primary,.btn-outline{width:100%;justify-content:center;}
+  /* TRUST */
+  .trust-inner{gap:0;flex-direction:column;align-items:stretch;}
   .tv{display:none;}
-  .ts{padding:12px 20px;}
-  .hero-stats{gap:0;}
-  .hstat{padding:0 18px;}
+  .ts{padding:14px 20px;border-bottom:1px solid var(--rim);}
+  .ts-big{font-size:2rem;}
+  .trust-msg{max-width:100%;padding:16px 20px;border-bottom:1px solid var(--rim);}
+  /* SECTION */
+  .section{padding:72px 0;}
+  .sec-h{font-size:clamp(2rem,10vw,3.5rem);}
+  .sec-head{margin-bottom:40px;}
+  /* SERVICES */
+  .svc-grid{grid-template-columns:1fr;border:none;gap:10px;}
+  .svc-cta{grid-column:span 1;flex-direction:column;}
+  .svc-cta-h{font-size:1.2rem;}
+  /* PROCESS */
+  .proc-row{grid-template-columns:1fr 1fr;gap:24px;}
+  .proc-row::before{display:none;}
+  /* SKILLS */
+  .sk-label{min-width:120px;font-size:.8rem;}
+  /* CHANNELS */
+  .ch-grid{grid-template-columns:1fr;}
+  /* CONTACT */
+  .ct-card{padding:22px 18px;}
+  /* FOOTER */
+  .foot-btns{gap:6px;}
+  /* GENERAL */
+  .w{padding:0 4%;}
 }
 </style>
 </head>
 <body>
+
+<!-- ░░ PWA INSTALL BANNER ░░ -->
+<div id="ob-install">
+  <div id="ob-ii">
+    <div id="ob-il">
+      <span id="ob-dot"></span>
+      <div>
+        <div id="ob-ititle">Install App</div>
+        <div id="ob-isub">Offensive Bloom</div>
+      </div>
+    </div>
+    <div id="ob-ia">
+      <button id="ob-ibtn">ADD</button>
+      <button id="ob-idismiss">✕</button>
+    </div>
+  </div>
+  <div id="ob-ihint"></div>
+</div>
+<style>
+#ob-install{
+  display:none;position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  z-index:99999;width:calc(100% - 32px);max-width:400px;
+  background:rgba(4,10,22,.97);
+  border:1px solid rgba(0,212,255,.18);border-radius:5px;
+  backdrop-filter:blur(24px);
+  box-shadow:0 0 0 1px rgba(0,212,255,.06),0 16px 48px rgba(0,0,0,.8);
+  font-family:'Share Tech Mono',monospace,sans-serif;
+  overflow:hidden;
+}
+#ob-install::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(0,212,255,.45),transparent);
+}
+#ob-ii{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 15px;}
+#ob-il{display:flex;align-items:center;gap:10px;}
+#ob-dot{
+  width:6px;height:6px;border-radius:50%;flex-shrink:0;
+  background:#00ff88;box-shadow:0 0 8px #00ff88;
+  display:block;animation:obp 1.8s ease-in-out infinite;
+}
+@keyframes obp{0%,100%{opacity:1}50%{opacity:.25}}
+#ob-ititle{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:#e8f4ff;margin-bottom:2px;}
+#ob-isub{font-size:.58rem;letter-spacing:.06em;color:rgba(0,212,255,.55);}
+#ob-ia{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+#ob-ibtn{
+  display:none;font-family:inherit;font-size:.6rem;letter-spacing:.18em;
+  padding:6px 14px;border-radius:3px;border:none;
+  background:#00d4ff;color:#000305;font-weight:700;cursor:none;
+  transition:box-shadow .2s;
+}
+#ob-ibtn:hover{box-shadow:0 0 20px rgba(0,212,255,.4);}
+#ob-idismiss{
+  background:none;border:none;font-size:.7rem;
+  color:rgba(122,153,187,.4);padding:4px 6px;cursor:none;
+  font-family:inherit;transition:color .2s;
+}
+#ob-idismiss:hover{color:#e8f4ff;}
+#ob-ihint{
+  display:none;font-size:.58rem;letter-spacing:.06em;
+  color:rgba(122,153,187,.48);padding:0 15px 11px;line-height:1.65;
+}
+</style>
+<script>
+(function(){
+  var banner  = document.getElementById('ob-install');
+  var btn     = document.getElementById('ob-ibtn');
+  var hint    = document.getElementById('ob-ihint');
+  var dismiss = document.getElementById('ob-idismiss');
+  var subEl   = document.getElementById('ob-isub');
+  if(sessionStorage.getItem('ob-dismissed')) return;
+
+  var ua          = navigator.userAgent;
+  var isIOS       = /iphone|ipad|ipod/i.test(ua) && !window.MSStream;
+  var isAndroid   = /android/i.test(ua);
+  var isDesktop   = !isIOS && !isAndroid;
+  var isStandalone= window.matchMedia('(display-mode:standalone)').matches
+                    || navigator.standalone === true;
+  if(isStandalone) return;
+
+  var deferred = null;
+
+  /* Android + Desktop Chrome/Edge: native prompt */
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    deferred = e;
+    if(isDesktop){
+      subEl.textContent = 'Install as desktop app';
+    } else {
+      subEl.textContent = 'Add to Home Screen';
+    }
+    btn.style.display = 'block';
+    banner.style.display = 'block';
+  });
+
+  /* iPhone / iPad: manual instructions */
+  if(isIOS){
+    subEl.textContent = 'Add to Home Screen';
+    hint.innerHTML = 'In Safari: tap the <strong style="color:#00d4ff">Share</strong> icon ↑ then tap <strong style="color:#00d4ff">"Add to Home Screen"</strong>';
+    hint.style.display = 'block';
+    banner.style.display = 'block';
+  }
+
+  btn.addEventListener('click', async function(){
+    if(!deferred) return;
+    deferred.prompt();
+    await deferred.userChoice;
+    deferred = null;
+    banner.style.display = 'none';
+  });
+
+  dismiss.addEventListener('click', function(){
+    banner.style.display = 'none';
+    sessionStorage.setItem('ob-dismissed','1');
+  });
+
+  window.addEventListener('appinstalled', function(){
+    banner.style.display = 'none';
+  });
+})();
+</script>
 
 <!-- BACKGROUND -->
 <canvas id="bg-canvas"></canvas>
@@ -1254,6 +1437,14 @@ window.addEventListener('load',()=>{
     setTimeout(()=>{el.style.opacity='1';el.style.transform='none';},100);
   });
 });
+</script>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('/sw.js');
+  });
+}
 </script>
 </body>
 </html>
